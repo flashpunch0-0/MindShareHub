@@ -1,0 +1,6 @@
+installed firebase many places auth funstion are used has been used 
+install react-firebase-hooks
+useNavigate is been used 
+auth provider which we declared in store.js
+singInWithPopup use to login to google 
+used useAuthState from react-firebase-hooks/auth we have to install it first it does the job by bringing the user's details who have looged in or going to login without the if we used auth.currentUser? it did not refresh or did not show photo after refresh
