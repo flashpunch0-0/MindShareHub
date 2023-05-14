@@ -1,46 +1,25 @@
-# Getting Started with Create React App
+This is a Social media app (FOCII) it uses a firebases for backend authentication and frontend as reactjs and typescript.
+to install firebase, type in cmd npm install firebase
+firbase/auth has many hooks like signInWithPopup it creates a pop up to login through google has many other options 
+firebase provides plenty of options on the site to authenticate user i chose google as it brings out professional approach.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* Installed react-router-dom to navigate between different pages  (to install type NPM INSTALL REACT-ROUTER-DOM)
+* Installed react-firebase-hooks to show the photo and name of the logged in user by typing NPM INSTALL REACT-FIREBASE-HOOKS (earlier used auth.currentUser? which did not show photo after refresh and did not show the photo for another user signed in
 
-## Available Scripts
+** For Logout    in Navbar component
+*imported { signOut } from "firebase/auth"; and created a async await function for that 
 
-In the project directory, you can run:
+** Navbar  Component
+* navbar component contains sign in and logout
 
-### `npm start`
+** Pages
+contains 
+*login page  has to button to login 
+    - used useNavigate to redirect user to home page after signing/logging in 
+ * Main page  nothing yet updated in this commit 
+ 
+ ** configure folder
+ * has firebas.ts files which provied auth function and Googleauthprovider funtions has important details of the project apikey , appid etc
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+** app.tsx
+basic details like importing from react-router-dom (router,routes,route) use to create route to Main and Login page
