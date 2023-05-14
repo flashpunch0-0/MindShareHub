@@ -12,13 +12,13 @@ export const Navbar = () => {
   // we can get more like loading ,error but now we want user
   return (
     // content wrapper
-    <nav className="bg-white shadow-xl ">
+    <nav className=" bg-yellow-400 shadow-xl  ">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-center  ">
           {/* contains two sides siteloga and authentication buttons */}
           <div className=" w-2/3 flex items-center  ">
             {/* logo container */}
-            <span className="font-semibold text-gray-500  text-2xl py-2 hover:scale-125">
+            <span className="font-semibold text-indigo-950  text-2xl py-2 hover:scale-125">
               Focii
             </span>
           </div>
@@ -27,21 +27,33 @@ export const Navbar = () => {
             {/* authenticator buttoncontainer */}
             <button className=" mr-1 ">
               <Link
-                className="py-1   px-1 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
+                className="py-1   px-1 font-medium text-indigo-950 rounded hover:bg-green-500 hover:text-white transition duration-300"
                 to={"/"}
               >
                 home
               </Link>
             </button>
 
-            <button className=" mr-1 ">
-              <Link
-                to={"/login"}
-                className="py-1  px-1 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
-              >
-                Login
-              </Link>
-            </button>
+            {/* if user is there then show create post button or else show login button for user to login */}
+            {!user ? (
+              <button className=" mr-1 ">
+                <Link
+                  to={"/login"}
+                  className="py-1  px-1 font-medium text-indigo-950 rounded hover:bg-green-500 hover:text-white transition duration-300"
+                >
+                  Login
+                </Link>
+              </button>
+            ) : (
+              <button className=" mr-1 ">
+                <Link
+                  to={"/CreatePost"}
+                  className="py-1  px-1 font-medium text-indigo-950 rounded hover:bg-green-500 hover:text-white transition duration-300"
+                >
+                  create
+                </Link>
+              </button>
+            )}
 
             {user && (
               <>
@@ -53,7 +65,7 @@ export const Navbar = () => {
                 />
                 <button
                   onClick={signUserOut}
-                  className="py-1  px-1 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
+                  className="   py-1  px-1 font-medium text-indigo-950 rounded md:hover:bg-green-500 hover:text-red-500 md:hover:text-white transition duration-300"
                 >
                   Log Out
                 </button>

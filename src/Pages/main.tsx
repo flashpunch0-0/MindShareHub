@@ -1,3 +1,7 @@
 export const Main = () => {
-  return <h1>home page</h1>;
+  return (
+    <body className="">
+      <h1>home page</h1>
+    </body>
+  );
 };
