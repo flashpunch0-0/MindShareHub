@@ -8,7 +8,7 @@ import { Createpost } from "./Pages/create-post/create-post";
 
 function App() {
   return (
-    <div className="App">
+    <div className="min-h-full h-screen ">
       <Router>
         <Navbar />
         <Routes>
@@ -17,7 +17,6 @@ function App() {
           <Route path="/createpost" element={<Createpost />} />
         </Routes>
       </Router>
-      ``
     </div>
   );
 }
