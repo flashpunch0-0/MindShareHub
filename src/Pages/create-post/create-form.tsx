@@ -67,8 +67,12 @@ export const CreateForm = () => {
           </form>
         </div>
         <div className="flex-row w-5/12 justify-center items-center   ">
-          <img src={postimage} className=" mx-10 h-64 w-64" alt="" />
-          <span className=" text-yellow-400 flex justify-center  font-semibold text-xl mt-4 tracking-widest">
+          <img
+            src={postimage}
+            className=" mx-10 h-32 w-32 md:h-64 md:w-64"
+            alt=""
+          />
+          <span className=" text-yellow-400 flex justify-center  font-semibold text-xl mt-10 md:mt-4 tracking-widest">
             Post
           </span>
         </div>

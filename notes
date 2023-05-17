@@ -8,3 +8,4 @@ from firebase/firestore we use adDoc to add doc to database
 also imported from the same getFirestore and assigned it to db constajt 
 collection specifie which collection we want adddoc to
 enabled read and wite in database by going to database rules and changed to true 
+use ctrl and "." to add import

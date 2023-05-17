@@ -12,7 +12,7 @@ export const Navbar = () => {
   // we can get more like loading ,error but now we want user
   return (
     // content wrapper
-    <nav className=" bg-yellow-400 shadow-xl  ">
+    <nav className=" bg-yellow-400 shadow-xl sticky top-0 ">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-center  ">
           {/* contains two sides siteloga and authentication buttons */}
