@@ -1,4 +1,12 @@
-import { addDoc, getDocs, collection, query, where } from "firebase/firestore";
+import {
+  addDoc,
+  getDocs,
+  collection,
+  query,
+  where,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { auth, db } from "../../config/firebase";
 import { Post as IPost } from "./main";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -8,6 +16,7 @@ interface Props {
 }
 
 interface Like {
+  likeId: string;
   userId: string;
 }
 
@@ -19,20 +28,55 @@ export const Post = (props: Props) => {
   const likesDoc = query(likesRef, where("postId", "==", post.id));
 
   const addLike = async () => {
-    await addDoc(likesRef, { userId: user?.uid, postId: post.id });
-    if (user) {
-      setLikes((prev) =>
-        prev ? [...prev, { userId: user.uid }] : [{ userId: user.uid }]
-      );
+    try {
+      const newDoc = await addDoc(likesRef, {
+        userId: user?.uid,
+        postId: post.id,
+      });
+      if (user) {
+        setLikes((prev) =>
+          prev
+            ? [...prev, { userId: user.uid, likeId: newDoc.id }]
+            : [{ userId: user.uid, likeId: newDoc.id }]
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteLike = async () => {
+    const likeToDeleteQuery = query(likesRef, where("postId", "==", post.id));
+    const likeToDeleteData = await getDocs(likeToDeleteQuery);
+    const likeId = likeToDeleteData.docs[0].id;
+    const likeToDelete = doc(db, "likes", likeId);
+    try {
+      await deleteDoc(likeToDelete);
+      if (user) {
+        setLikes(
+          // (prev) => prev && prev.filter((like) => like.likeId === likeId)
+          // earlier used the above line but we hav to make !== because dont want to filter out and keep it we dont want it
+          (prev) => prev && prev.filter((like) => like.likeId !== likeId)
+        );
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
   const getLikes = async () => {
     const likedata = await getDocs(likesDoc);
-    setLikes(likedata.docs.map((doc) => ({ userId: doc.data().userId })));
+    setLikes(
+      likedata.docs.map((doc) => ({
+        userId: doc.data().userId,
+        likeId: doc.id,
+      }))
+    );
   };
 
   const hasUserLiked = likes?.find((like) => like.userId === user?.uid);
+  // above lines checks if user has already liked or not
+
   useEffect(() => {
     getLikes();
   }, []);
@@ -48,7 +92,7 @@ export const Post = (props: Props) => {
       </div>
       <div className="footer">
         <p>@{post.username}</p>
-        <button onClick={addLike}>
+        <button onClick={hasUserLiked ? deleteLike : addLike}>
           {hasUserLiked ? <>&#128078;</> : <>&#128077;</>}
         </button>
         {likes && <p>Likes : {likes?.length}</p>}

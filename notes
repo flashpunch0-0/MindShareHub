@@ -9,3 +9,10 @@ also imported from the same getFirestore and assigned it to db constajt
 collection specifie which collection we want adddoc to
 enabled read and wite in database by going to database rules and changed to true 
 use ctrl and "." to add import
+
+// to get likes we do the same thins as we did to get the posts
+//  using usestate to present likeamount
+//  console.log(likedata.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+// modified bove statement to only likedata.docs as we only need length of that data.docs arrayso write data.docs.length
+
+to delete we first have to mend the rules of firebase and edit delete access then we can do it
